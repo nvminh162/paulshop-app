@@ -18,7 +18,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString
+@ToString(exclude = {"users"})
 
 @Entity
 @Table(name = "roles")

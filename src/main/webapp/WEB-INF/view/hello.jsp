@@ -15,13 +15,12 @@
             <link rel="stylesheet" href="/css/demo.css">
         </head>
         <body>
-            @nvminh162 Hello, JSP
-            <hr>
-            <p>Today's date: <%= (new java.util.Date()).toLocaleString()%></p>
-            <hr>
-            ${test}
             <div>
-                <button>Submit</button>
+                <p style="text-align: center;">@nvminh162 Hello, JSP</p>
+                <hr>
+                <p style="text-align: center;">Today's date: <%= (new java.util.Date()).toLocaleString()%></p>
+                <hr>
+                <p style="text-align: center;">${nvminh162}</p>
             </div>
         </body>
         </html>

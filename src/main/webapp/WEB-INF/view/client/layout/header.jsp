@@ -53,23 +53,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
       <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
         <div class="navbar-nav mx-auto">
           <a href="/" class="nav-item nav-link active">Home</a>
-          <a href="shop.html" class="nav-item nav-link">Shop</a>
-          <a href="/product/1" class="nav-item nav-link">Shop Detail</a> <!-- Path ID demo is 1 -->
-          <div class="nav-item dropdown">
-            <a
-              href="#"
-              class="nav-link dropdown-toggle"
-              data-bs-toggle="dropdown"
-              >Pages</a
-            >
-            <div class="dropdown-menu m-0 bg-secondary rounded-0">
-              <a href="cart.html" class="dropdown-item">Cart</a>
-              <a href="chackout.html" class="dropdown-item">Chackout</a>
-              <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-              <a href="404.html" class="dropdown-item">404 Page</a>
-            </div>
-          </div>
-          <a href="contact.html" class="nav-item nav-link">Contact</a>
+          <a href="/product/1" class="nav-item nav-link">Product</a> <!-- Path ID demo is 1 -->
         </div>
         <div class="d-flex m-3 me-0">
           <button

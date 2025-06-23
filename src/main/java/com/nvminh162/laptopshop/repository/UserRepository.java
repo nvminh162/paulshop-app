@@ -9,7 +9,7 @@ import java.util.List;
 
 //crud: create, read, update, delete
 @Repository
-public interface UserRepository extends JpaRepository<com.nvminh162.laptopshop.domain.User, Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
     User save(User user);
 
     void deleteById(long id);

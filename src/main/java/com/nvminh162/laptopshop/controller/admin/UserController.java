@@ -62,9 +62,9 @@ public class UserController {
         @RequestParam("avatarFile") MultipartFile file
     ) {
         String hashPassword = this.passwordEncoder.encode(user.getPassword());
-        String avatar = uploadService.handleSaveUploadFile(file, "avatar");
+        String avatarImgName = uploadService.handleSaveUploadFile(file, "avatar");
 
-        user.setAvatar(avatar);
+        user.setAvatar(avatarImgName);
         user.setPassword(hashPassword);
         user.setRole(this.userService.getRoleById(user.getRole().getId()));
 

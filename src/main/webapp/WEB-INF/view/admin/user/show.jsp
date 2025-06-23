@@ -30,40 +30,6 @@
           <link href="/css/styles.css" rel="stylesheet" />
         </head>
         <body class="sb-nav-fixed">
-          <!-- <div class="container mt-5">
-                  <div class="d-flex justify-content-between">
-                    <h1>@nvminh162 - Table Users</h1>
-                    <form action="/admin/user/create" method="get">
-                      <button type="submit" class="btn btn-primary">Create New User</button>
-                    </form>
-                  </div>
-                  <div class="row">
-                    <table class="table table-hover">
-                      <thead>
-                        <tr>
-                          <th scope="col">ID</th>
-                          <th scope="col">Email</th>
-                          <th scope="col">Full Name</th>
-                          <th scope="col">Action</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <c:forEach var="user" items="${users}">
-                          <tr>
-                            <th scope="row">${user.id}</th>
-                            <td>${user.email}</td>
-                            <td>${user.fullName}</td>
-                            <td>
-                              <a href="/admin/user/${user.id}" class="btn btn-success">View</a>
-                              <a href="/admin/user/update/${user.id}" class="btn btn-warning">Update</a>
-                              <a href="/admin/user/delete/${user.id}" class="btn btn-danger">Delete</a>
-                            </td>
-                          </tr>
-                        </c:forEach>
-                      </tbody>
-                    </table>
-                  </div>
-                </div> -->
           <jsp:include page="../layout/header.jsp" />
           <div id="layoutSidenav">
             <jsp:include page="../layout/sideBar.jsp" />
@@ -92,6 +58,7 @@
                               <th>ID</th>
                               <th>Email</th>
                               <th>Full Name</th>
+                              <th>Role</th>
                               <th>Action</th>
                             </tr>
                           </thead>
@@ -101,6 +68,7 @@
                                 <th>${user.id}</th>
                                 <td>${user.email}</td>
                                 <td>${user.fullName}</td>
+                                <td>${user.role.name}</td>
                                 <td>
                                   <a
                                     href="/admin/user/${user.id}"

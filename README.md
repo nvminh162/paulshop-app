@@ -1,5 +1,3 @@
-# 85
-
 # Laptop Shop Application
 
 ## Overview

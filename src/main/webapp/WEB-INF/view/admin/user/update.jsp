@@ -102,38 +102,54 @@
                             <label class="form-label">Id:</label>
                             <form:input type="text" class="form-control" path="id" />
                           </div>
+                          <!-- Hidden fields để tránh validation error -->
+                          <form:input type="hidden" path="email" />
+                          <form:input type="hidden" path="password" />
+                          
                           <div class="mb-3">
                             <label class="form-label">Email:</label>
-                            <form:input
+                            <input
                               type="email"
                               class="form-control"
-                              path="email"
+                              value="${updateUser.email}"
                               disabled="true"
                             />
                           </div>
                           <div class="mb-3">
+                            <c:set var="errorPhone">
+                              <form:errors path="phone" cssClass="invalid-feedback" />
+                            </c:set>
                             <label class="form-label">Phone number:</label>
                             <form:input
                               type="text"
-                              class="form-control"
+                              class="form-control ${not empty errorPhone ? 'is-invalid' : ''}"
                               path="phone"
                             />
+                            ${errorPhone}
                           </div>
                           <div class="mb-3">
+                            <c:set var="errorFullName">
+                              <form:errors path="fullName" cssClass="invalid-feedback" />
+                            </c:set>
                             <label class="form-label">Full Name:</label>
                             <form:input
                               type="text"
-                              class="form-control"
+                              class="form-control ${not empty errorFullName ? 'is-invalid' : ''}"
                               path="fullName"
                             />
+                            ${errorFullName}
                           </div>
                           <div class="mb-3">
+                            <c:set var="errorAddress">
+                              <form:errors path="address" cssClass="invalid-feedback" />
+                            </c:set>
                             <label class="form-label">Address:</label>
                             <form:input
                               type="text"
-                              class="form-control"
+                              class="form-control ${not empty errorAddress ? 'is-invalid' : ''}"
                               path="address"
                             />
+                            ${errorAddress}
                           </div>
                           <button type="submit" class="btn btn-warning">
                             Update

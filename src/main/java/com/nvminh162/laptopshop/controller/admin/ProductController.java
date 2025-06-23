@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +14,7 @@ import com.nvminh162.laptopshop.domain.Product;
 import com.nvminh162.laptopshop.service.ProductService;
 import com.nvminh162.laptopshop.service.UploadService;
 
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -39,16 +41,19 @@ public class ProductController {
     public String getCreatePage(Model model) {
         model.addAttribute("newProduct", new Product());
         return "/admin/product/create";
-    }
-
-    @PostMapping("/admin/product/create")
+    }    @PostMapping("/admin/product/create")
     public String createPage(
             Model model,
-            @ModelAttribute("newProduct") Product product,
-            @RequestParam("productFile") MultipartFile file,
-            BindingResult newProductBindingResult) {
+            @ModelAttribute("newProduct") @Valid Product product,
+            BindingResult newProductBindingResult,
+            @RequestParam("productFile") MultipartFile file) {
+        
         // validate
         if (newProductBindingResult.hasErrors()) {
+            List<FieldError> errors = newProductBindingResult.getFieldErrors();
+            for (FieldError error : errors) {
+                System.out.println("Validation Error: " + error.getField() + " - " + error.getDefaultMessage());
+            }
             return "admin/product/create";
         }
 
@@ -88,15 +93,19 @@ public class ProductController {
         model.addAttribute("updateProduct", product);
         model.addAttribute("id", id);
         return "admin/product/update";
-    }
-
-    @PostMapping("/admin/product/update")
+    }    @PostMapping("/admin/product/update")
     public String postMethodName(
             Model model,
-            @ModelAttribute("updateProduct") Product product,
-            BindingResult newProductBindingResult,
+            @ModelAttribute("updateProduct") @Valid Product product,
+            BindingResult updateProductBindingResult,
             @RequestParam("productFile") MultipartFile file) {
-        if (newProductBindingResult.hasErrors()) {
+        
+        if (updateProductBindingResult.hasErrors()) {
+            List<FieldError> errors = updateProductBindingResult.getFieldErrors();
+            for (FieldError error : errors) {
+                System.out.println("Validation Error: " + error.getField() + " - " + error.getDefaultMessage());
+            }
+            model.addAttribute("id", product.getId());
             return "admin/product/update";
         }
 

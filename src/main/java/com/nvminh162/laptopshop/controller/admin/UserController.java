@@ -5,12 +5,16 @@ import java.util.List;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.nvminh162.laptopshop.domain.User;
 import com.nvminh162.laptopshop.service.UploadService;
 import com.nvminh162.laptopshop.service.UserService;
+
+import jakarta.validation.Valid;
 
 @Controller
 public class UserController {
@@ -19,10 +23,9 @@ public class UserController {
     private final PasswordEncoder passwordEncoder;
 
     public UserController(
-        UserService userService, 
-        UploadService uploadService,
-        PasswordEncoder passwordEncoder
-    ) {
+            UserService userService,
+            UploadService uploadService,
+            PasswordEncoder passwordEncoder) {
         this.userService = userService;
         this.uploadService = uploadService;
         this.passwordEncoder = passwordEncoder;
@@ -57,10 +60,19 @@ public class UserController {
 
     @PostMapping(value = "/admin/user/create")
     public String createUserPage(
-        Model model,
-        @ModelAttribute("newUser") User user,
-        @RequestParam("avatarFile") MultipartFile file
-    ) {
+            Model model,
+            @ModelAttribute("newUser") @Valid User user,
+            BindingResult newUserBindingResult,
+            @RequestParam("avatarFile") MultipartFile file) {
+
+        if (newUserBindingResult.hasErrors()) {
+            List<FieldError> errors = newUserBindingResult.getFieldErrors();
+            for (FieldError error : errors) {
+                System.out.println("Validation Error: " + error.getField() + " - " + error.getDefaultMessage());
+            }
+            return "admin/user/create";
+        }
+
         String hashPassword = this.passwordEncoder.encode(user.getPassword());
         String avatarImgName = uploadService.handleSaveUploadFile(file, "avatar");
 
@@ -82,7 +94,23 @@ public class UserController {
     }
 
     @PostMapping("/admin/user/update")
-    public String postUpdateUser(Model model, @ModelAttribute("updateUser") User user) {
+    public String postUpdateUser(
+            Model model,
+            @ModelAttribute("updateUser") @Valid User user,
+            BindingResult updateUserBindingResult) {        if (updateUserBindingResult.hasErrors()) {
+            List<FieldError> errors = updateUserBindingResult.getFieldErrors();
+            for (FieldError error : errors) {
+                System.out.println("Validation Error: " + error.getField() + " - " + error.getDefaultMessage());
+            }
+            User userFromDB = this.userService.getUserById(user.getId());
+            user.setEmail(userFromDB.getEmail());
+            user.setPassword(userFromDB.getPassword());
+            
+            model.addAttribute("id", user.getId());
+            model.addAttribute("user", user);
+            return "admin/user/update";
+        }
+
         User userExist = this.userService.getUserById(user.getId());
         System.out.println(userExist);
         if (userExist != null) {

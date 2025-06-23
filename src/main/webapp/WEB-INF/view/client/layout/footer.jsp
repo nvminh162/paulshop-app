@@ -10,8 +10,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
       <div class="row g-4">
         <div class="col-lg-3">
           <a href="#">
-            <h1 class="text-primary mb-0">Fruitables</h1>
-            <p class="text-secondary mb-0">Fresh products</p>
+            <h1 class="text-primary mb-0">PaulShop</h1>
           </a>
         </div>
         <div class="col-lg-6">
@@ -96,9 +95,9 @@ uri="http://java.sun.com/jsp/jstl/core"%>
       <div class="col-lg-3 col-md-6">
         <div class="footer-item">
           <h4 class="text-light mb-3">Contact</h4>
-          <p>Address: 1429 Netus Rd, NY 48247</p>
-          <p>Email: Example@gmail.com</p>
-          <p>Phone: +0123 4567 8910</p>
+          <p>Address: 137/2 Trần Bá Giao, Phường 5, Gò Vấp, TP HCM</p>
+          <p>Email: nvminh162@gmail.com</p>
+          <p>Phone: +84 353 999 798</p>
           <p>Payment Accepted</p>
           <img src="/client/img/payment.png" class="img-fluid" alt="" />
         </div>
@@ -115,18 +114,9 @@ uri="http://java.sun.com/jsp/jstl/core"%>
       <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
         <span class="text-light"
           ><a href="#"
-            ><i class="fas fa-copyright text-light me-2"></i>Your Site Name</a
+            ><i class="fas fa-copyright text-light me-2"></i>@nvminh162</a
           >, All right reserved.</span
         >
-      </div>
-      <div class="col-md-6 my-auto text-center text-md-end text-white">
-        <!--/*** This template is free as long as you keep the below author’s credit link/attribution link/backlink. ***/-->
-        <!--/*** If you'd like to use the template without the below author’s credit link/attribution link/backlink, ***/-->
-        <!--/*** you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". ***/-->
-        Designed By
-        <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
-        Distributed By
-        <a class="border-bottom" href="https://themewagon.com">ThemeWagon</a>
       </div>
     </div>
   </div>

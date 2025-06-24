@@ -1,5 +1,6 @@
 package com.nvminh162.laptopshop.domain;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -37,6 +38,7 @@ public class Product {    @Id
     private String image;
     
     @Size(min = 1, message = "Mô tả chi tiết không được để trống")
+    @Column(columnDefinition = "MEDIUMTEXT")
     private String detailDesc;
     
     @Size(min = 1, message = "Mô tả ngắn không được để trống")  

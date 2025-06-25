@@ -33,14 +33,14 @@ public class ProductController {
     public String getDashboard(Model model) {
         List<Product> products = productService.getAllProducts();
         model.addAttribute("products", products);
-        return "/admin/product/show";
+        return "admin/product/show";
     }
 
     // Create
     @GetMapping("/admin/product/create")
     public String getCreatePage(Model model) {
         model.addAttribute("newProduct", new Product());
-        return "/admin/product/create";
+        return "admin/product/create";
     }    @PostMapping("/admin/product/create")
     public String createPage(
             Model model,

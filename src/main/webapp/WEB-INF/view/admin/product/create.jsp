@@ -49,7 +49,8 @@ uri="http://www.springframework.org/tags/form" prefix="form"%>
                     modelAttribute="newProduct"
                     class="row"
                     enctype="multipart/form-data"
-                  >                    <div class="mb-3 col-12 col-md-6">
+                  >
+                    <div class="mb-3 col-12 col-md-6">
                       <c:set var="errorName">
                         <form:errors path="name" cssClass="invalid-feedback" />
                       </c:set>
@@ -60,7 +61,8 @@ uri="http://www.springframework.org/tags/form" prefix="form"%>
                         path="name"
                       />
                       ${errorName}
-                    </div>                    <div class="mb-3 col-12 col-md-6">
+                    </div>
+                    <div class="mb-3 col-12 col-md-6">
                       <c:set var="errorPrice">
                         <form:errors path="price" cssClass="invalid-feedback" />
                       </c:set>
@@ -71,9 +73,13 @@ uri="http://www.springframework.org/tags/form" prefix="form"%>
                         path="price"
                       />
                       ${errorPrice}
-                    </div>                    <div class="mb-3 col-12">
+                    </div>
+                    <div class="mb-3 col-12">
                       <c:set var="errorDetailDesc">
-                        <form:errors path="detailDesc" cssClass="invalid-feedback" />
+                        <form:errors
+                          path="detailDesc"
+                          cssClass="invalid-feedback"
+                        />
                       </c:set>
                       <label class="form-label">Detail description:</label>
                       <form:textarea
@@ -82,9 +88,13 @@ uri="http://www.springframework.org/tags/form" prefix="form"%>
                         rows="4"
                       />
                       ${errorDetailDesc}
-                    </div>                    <div class="mb-3 col-12 col-md-6">
+                    </div>
+                    <div class="mb-3 col-12 col-md-6">
                       <c:set var="errorShortDesc">
-                        <form:errors path="shortDesc" cssClass="invalid-feedback" />
+                        <form:errors
+                          path="shortDesc"
+                          cssClass="invalid-feedback"
+                        />
                       </c:set>
                       <label class="form-label">Short description:</label>
                       <form:input
@@ -93,9 +103,13 @@ uri="http://www.springframework.org/tags/form" prefix="form"%>
                         path="shortDesc"
                       />
                       ${errorShortDesc}
-                    </div>                    <div class="mb-3 col-12 col-md-6">
+                    </div>
+                    <div class="mb-3 col-12 col-md-6">
                       <c:set var="errorQuantity">
-                        <form:errors path="quantity" cssClass="invalid-feedback" />
+                        <form:errors
+                          path="quantity"
+                          cssClass="invalid-feedback"
+                        />
                       </c:set>
                       <label class="form-label">Quantity:</label>
                       <form:input

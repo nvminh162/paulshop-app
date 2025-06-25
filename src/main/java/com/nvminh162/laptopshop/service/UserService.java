@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.nvminh162.laptopshop.domain.Role;
 import com.nvminh162.laptopshop.domain.User;
+import com.nvminh162.laptopshop.domain.dto.RegisterDTO;
 import com.nvminh162.laptopshop.repository.RoleRepository;
 import com.nvminh162.laptopshop.repository.UserRepository;
 
@@ -40,5 +41,17 @@ public class UserService {
 
     public Role getRoleByName(String name) {
         return this.roleRepository.findByName(name);
+    }
+
+    public boolean checkEmailExist(String email) {
+        return this.userRepository.existsByEmail(email);
+    }
+
+    public User registerDTOtoUser(RegisterDTO registerDTO) {
+        User user = new User();
+        user.setFullName(registerDTO.getFirstName() + " " + registerDTO.getLastName());
+        user.setEmail(registerDTO.getEmail());
+        user.setPassword(registerDTO.getPassword());
+        return user;
     }
 }

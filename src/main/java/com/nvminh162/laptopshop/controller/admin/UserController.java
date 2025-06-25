@@ -97,7 +97,8 @@ public class UserController {
     public String postUpdateUser(
             Model model,
             @ModelAttribute("updateUser") @Valid User user,
-            BindingResult updateUserBindingResult) {        if (updateUserBindingResult.hasErrors()) {
+            BindingResult updateUserBindingResult) {
+        if (updateUserBindingResult.hasErrors()) {
             List<FieldError> errors = updateUserBindingResult.getFieldErrors();
             for (FieldError error : errors) {
                 System.out.println("Validation Error: " + error.getField() + " - " + error.getDefaultMessage());
@@ -105,7 +106,7 @@ public class UserController {
             User userFromDB = this.userService.getUserById(user.getId());
             user.setEmail(userFromDB.getEmail());
             user.setPassword(userFromDB.getPassword());
-            
+
             model.addAttribute("id", user.getId());
             model.addAttribute("user", user);
             return "admin/user/update";

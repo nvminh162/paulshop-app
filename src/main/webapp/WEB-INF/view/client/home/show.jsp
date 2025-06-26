@@ -1,6 +1,6 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%> 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%> <%@ taglib prefix="c"
+uri="http://java.sun.com/jsp/jstl/core"%> <%@ taglib
+uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -78,27 +78,37 @@
                           <div
                             class="p-4 border border-secondary border-top-0 rounded-bottom"
                           >
-                            <h4 style="min-height:65px;"><a href="/product/${product.id}">${product.name}</a></h4>
-                            <p>
-                              ${product.shortDesc}
-                            </p>                            <div
+                            <h4 style="min-height: 65px">
+                              <a href="/product/${product.id}"
+                                >${product.name}</a
+                              >
+                            </h4>
+                            <p>${product.shortDesc}</p>
+                            <div
                               class="d-flex justify-content-center flex-lg-wrap my-3"
                             >
                               <p class="text-dark fs-5 fw-bold mb-0">
-                                <fmt:formatNumber type="number" value="${product.price}" /> đ
+                                <fmt:formatNumber
+                                  type="number"
+                                  value="${product.price}"
+                                />
+                                đ
                               </p>
                             </div>
                             <div
                               class="d-flex justify-content-center flex-lg-wrap"
                             >
-                              <a
-                                href="#"
-                                class="btn border border-secondary rounded-pill px-3 text-primary"
-                                ><i
-                                  class="fa fa-shopping-bag me-2 text-primary"
-                                ></i>
-                                Add to cart</a
-                              >
+                              <form action="/add-product-to-cart/${product.id}" method="post">
+                                <button
+                                  class="btn border border-secondary rounded-pill px-3 text-primary"
+                                >
+                                  <i
+                                    class="fa fa-shopping-bag me-2 text-primary"
+                                  ></i>
+                                  Add to cart
+                                </button>
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                              </form>
                             </div>
                           </div>
                         </div>

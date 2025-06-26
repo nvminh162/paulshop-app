@@ -92,21 +92,23 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                   class="d-flex align-items-center flex-column"
                   style="min-width: 300px"
                 >
-                  <img
-                    style="
-                      width: 150px;
-                      height: 150px;
-                      border-radius: 50%;
-                      overflow: hidden;
-                    "
-                    src="/images/avatar/${sessionScope.avatar}"
-                  />
+                  <c:if test="${not empty sessionScope.avatar}">
+                    <img
+                      style="
+                        width: 150px;
+                        height: 150px;
+                        border-radius: 50%;
+                        overflow: hidden;
+                      "
+                      src="/images/avatar/${sessionScope.avatar}"
+                    />
+                  </c:if>
                   <div class="text-center my-3">
                     <c:out value="${sessionScope.fullName}" />
                   </div>
-                  <div class="text-center my-3">
+                  <!-- <div class="text-center my-3">
                     <c:out value="${pageContext.request.userPrincipal.name}" />
-                  </div>
+                  </div> -->
                 </li>
                 <li><a class="dropdown-item" href="#">Quản lý tài khoản</a></li>
                 <li><a class="dropdown-item" href="#">Lịch sử mua hàng</a></li>

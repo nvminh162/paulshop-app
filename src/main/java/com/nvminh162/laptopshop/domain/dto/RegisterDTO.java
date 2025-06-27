@@ -2,7 +2,7 @@ package com.nvminh162.laptopshop.domain.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Size;
-import com.nvminh162.laptopshop.service.validator.*;
+import com.nvminh162.laptopshop.service.validator.RegisterChecked;
 
 @RegisterChecked
 public class RegisterDTO {

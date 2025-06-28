@@ -1,8 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `laptopshop` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `laptopshop`;
+CREATE DATABASE  IF NOT EXISTS `paulshop` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `paulshop`;
 -- MySQL dump 10.13  Distrib 8.0.32, for Win64 (x86_64)
 --
--- Host: localhost    Database: laptopshop
+-- Host: localhost    Database: paulshop
 -- ------------------------------------------------------
 -- Server version	8.0.32
 

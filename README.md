@@ -1,4 +1,4 @@
-# Laptop Shop Application
+# Paul Shop Application
 
 ## Overview
 Laptop Shop is a comprehensive e-commerce web application built using Spring MVC and Spring Boot. This application provides a platform for selling laptops online with features for both customers and administrators. The system includes product management, user authentication, shopping cart functionality, and order processing.
@@ -52,7 +52,7 @@ laptopshop/
 ├── src/
 │   ├── main/
 │   │   ├── java/
-│   │   │   └── vn/hoidanit/laptopshop/
+│   │   │   └── vn/nvminh162/laptopshop/
 │   │   │       ├── config/         # Application configuration
 │   │   │       ├── controller/     # MVC controllers
 │   │   │       │   ├── admin/      # Admin controllers
@@ -126,7 +126,7 @@ The application uses MySQL with the following key entities:
 
 1. **Build and run with Docker Compose**
    ```bash
-   docker compose -p hoidanit-spring-mvc up -d
+   docker compose -p nvminh162-spring-mvc up -d
    ```
 
 2. **Access the application**

@@ -3,6 +3,7 @@ package com.nvminh162.paulshop.domain;
 import java.io.Serializable;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -31,7 +32,8 @@ public class Cart implements Serializable {
     private User user;
 
     // cart_detail_id
-    @OneToMany(mappedBy = "cart")
+    // @OneToMany(mappedBy = "cart")
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
     List<CartDetail> cartDetails;
 
     public long getId() {
@@ -66,4 +68,8 @@ public class Cart implements Serializable {
         this.cartDetails = cartDetails;
     }
 
+    @Override
+    public String toString() {
+        return "Cart [id=" + id + ", sum=" + sum + ", user=" + user + ", cartDetails=" + cartDetails + "]";
+    }
 }

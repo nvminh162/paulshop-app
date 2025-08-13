@@ -73,4 +73,9 @@ public class CartDetail implements Serializable {
         this.product = product;
     }
 
+    @Override
+    public String toString() {
+        return "CartDetail [id=" + id + ", quantity=" + quantity + ", price=" + price + ", cart=" + cart + ", product="
+                + product + "]";
+    }
 }

@@ -30,7 +30,7 @@
     <properties>
         <java.version>17</java.version>
     </properties>
-    
+
     <dependencyManagement>
         <dependencies>
             <!-- Resolve jandex version conflict -->
@@ -39,14 +39,14 @@
                 <artifactId>jandex</artifactId>
                 <version>3.3.0</version>
             </dependency>
-            
+
             <!-- Resolve jaxb-runtime version conflict -->
             <dependency>
                 <groupId>org.glassfish.jaxb</groupId>
                 <artifactId>jaxb-runtime</artifactId>
                 <version>4.0.5</version>
             </dependency>
-            
+
             <!-- Resolve antlr4-runtime version conflict -->
             <dependency>
                 <groupId>org.antlr</groupId>
@@ -55,7 +55,7 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-    
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>

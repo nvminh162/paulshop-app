@@ -214,12 +214,13 @@ public class ProductService {
                     this.orderDetailRepository.save(orderDetail);
                 }
 
+                // TODO: BUG HERE!!!!!!!!!!!!!!!!!!!!!!!!!
                 // step 2: delete cart_detail and cart
-                for (CartDetail cd : cartDetails) {
-                    this.cartDetailRepository.deleteById(cd.getId());
-                }
+                // for (CartDetail cd : cartDetails) {
+                //     this.cartDetailRepository.deleteById(cd.getId());
+                // }
 
-                this.cartRepository.deleteById(cart.getId());
+                // this.cartRepository.deleteById(cart.getId());
 
                 // step 3 : update session
                 session.setAttribute("sum", 0);

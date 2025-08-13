@@ -17,10 +17,20 @@ import jakarta.servlet.DispatcherType;
 import com.nvminh162.paulshop.service.CustomUserDetailsService;
 import com.nvminh162.paulshop.service.UserService;
 
+/* NOTE
+ * Vì sao lại thêm @Bean kết hợp @Configuration:
+ * Nói với Spring rằng: tôi muốn ghi đè cấu hình mặc định
+ */
 @Configuration
 @EnableMethodSecurity(securedEnabled = true)
 public class SecurityConfiguration {
 
+    /*
+     * NOTE
+     * Sử dụng thuật toán BCrypt
+     * Ghi đè cấu hình mặc định đối tượng PasswordEncoder
+     * => Mã hoá mật khẩu người dùng bằng thuật toán BCrypt =))
+     */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -56,6 +66,10 @@ public class SecurityConfiguration {
         return rememberMeServices;
     }
 
+    /* NOTE
+     * Ghi đè cấu hình mặc định đối tượng SecurityFilterChain
+     *
+     */
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         // v6. lamda
@@ -91,5 +105,4 @@ public class SecurityConfiguration {
 
         return http.build();
     }
-
 }

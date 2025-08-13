@@ -55,12 +55,6 @@ public class User implements Serializable {
     @OneToOne(mappedBy = "user")
     private Cart cart;
 
-    @Override
-    public String toString() {
-        return "User [id=" + id + ", email=" + email + ", password=" + password + ", fullName=" + fullName
-                + ", address=" + address + ", phone=" + phone + ", avatar=" + avatar + "]";
-    }
-
     public long getId() {
         return id;
     }
@@ -141,4 +135,10 @@ public class User implements Serializable {
         this.cart = cart;
     }
 
+    @Override
+    public String toString() {
+        return "User [id=" + id + ", email=" + email + ", password=" + password + ", fullName=" + fullName
+                + ", address=" + address + ", phone=" + phone + ", avatar=" + avatar + ", role=" + role + ", orders="
+                + orders + ", cart=" + cart + "]";
+    }
 }

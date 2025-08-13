@@ -24,13 +24,16 @@ import com.nvminh162.paulshop.domain.Product_;
 import com.nvminh162.paulshop.domain.User;
 import com.nvminh162.paulshop.domain.dto.ProductCriteriaDTO;
 import com.nvminh162.paulshop.service.ProductService;
+import com.nvminh162.paulshop.service.UserService;
 
 @Controller
 public class ItemController {
 
+    private final UserService userService;
     private final ProductService productService;
 
-    public ItemController(ProductService productService) {
+    public ItemController(UserService userService, ProductService productService) {
+        this.userService = userService;
         this.productService = productService;
     }
 
@@ -121,10 +124,9 @@ public class ItemController {
             @RequestParam("receiverName") String receiverName,
             @RequestParam("receiverAddress") String receiverAddress,
             @RequestParam("receiverPhone") String receiverPhone) {
-        User currentUser = new User();// null
         HttpSession session = request.getSession(false);
         long id = (long) session.getAttribute("id");
-        currentUser.setId(id);
+        User currentUser = userService.getUserById(id);
 
         this.productService.handlePlaceOrder(currentUser, session, receiverName, receiverAddress, receiverPhone);
 

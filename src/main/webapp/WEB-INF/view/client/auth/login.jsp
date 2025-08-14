@@ -47,6 +47,7 @@
                                                             placeholder="Password" name="password" />
                                                         <label>Password</label>
                                                     </div>
+                                                    <!-- Thêm trường này vào nếu dùng JSP, Thymleaf ko cần! -->
                                                     <div>
                                                         <input type="hidden" name="${_csrf.parameterName}"
                                                             value="${_csrf.token}" />

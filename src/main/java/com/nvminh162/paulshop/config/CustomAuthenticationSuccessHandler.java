@@ -32,6 +32,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         roleTargetUrlMap.put("ROLE_USER", "/");
         roleTargetUrlMap.put("ROLE_ADMIN", "/admin");
 
+        // Lẩy ra quyền hàng ng  -  giống array
         final Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
         for (final GrantedAuthority grantedAuthority : authorities) {
             String authorityName = grantedAuthority.getAuthority();
@@ -43,6 +44,12 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
     }
 
     protected void clearAuthenticationAttributes(HttpServletRequest request, Authentication authentication) {
+        /* 
+         * getSession
+         * - Truyền false, nếu request đã tồn tại session thì nó sẽ sử dụng lại session đó, mà không tạo mới
+         * - Không truyền tham số, thực hiện check nếu có sử dụng lại session đó, nếu không thì tạo
+         * => việc dùng false: tao chỉ muốn sử dụng session khi mày có thôi, nếu không có tao sẽ ko làm gì cả
+         */
         HttpSession session = request.getSession(false);
         if (session == null) {
             return;
@@ -66,7 +73,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
             Authentication authentication) throws IOException, ServletException {
-
+        // truyền authentication chính là data ta lưu trong spring security
         String targetUrl = determineTargetUrl(authentication);
 
         if (response.isCommitted()) {

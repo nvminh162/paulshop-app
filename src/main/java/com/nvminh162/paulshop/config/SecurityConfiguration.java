@@ -92,16 +92,19 @@ public class SecurityConfiguration {
                         .anyRequest().authenticated()
                 )
                 .sessionManagement((sessionManagement) -> sessionManagement
-
+                        // Nếu ng dùng chưa có session thì tạo mới
                         .sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
-
+                        // Hết hạn session thì sẽ tự động logout
                         .invalidSessionUrl("/logout?expired")
-
+                        // Tại một thời điểm có bao nhiêu tài khoản đăng nhập
                         .maximumSessions(1)
 
                         .maxSessionsPreventsLogin(false)
                 )
                 .logout(logout -> logout.deleteCookies("JSESSIONID").invalidateHttpSession(true))
+                // Fix cơ chế mặc định của Spring
+                // Khi tắt trình duyệt thì session sẽ bị xoá giống app Banking
+                // sau khi config thì thời gian session là 30 ngày
                 .rememberMe(r -> r.rememberMeServices(rememberMeServices()))
                 .formLogin(formLogin -> formLogin
                         // Không cần cấu hình controller postMapping vì spring đã làm sẵn
@@ -110,6 +113,7 @@ public class SecurityConfiguration {
                         .successHandler(authenticationSuccessHandler())
                         .permitAll()
                 )
+                // Handle Access Denied - 403
                 .exceptionHandling(ex -> ex.accessDeniedPage("/access-deny"));
         return http.build();
     }
@@ -194,6 +198,8 @@ public class SecurityConfiguration {
         SpringSessionRememberMeServices rememberMeServices = new SpringSessionRememberMeServices();
         // optionally customize
         rememberMeServices.setAlwaysRemember(true);
+        // Đặt thời gian session là 1 ngày (86400 giây)
+        rememberMeServices.setValiditySeconds(86400); // 24 * 60 * 60 = 86400 giây
         return rememberMeServices;
     }
 }

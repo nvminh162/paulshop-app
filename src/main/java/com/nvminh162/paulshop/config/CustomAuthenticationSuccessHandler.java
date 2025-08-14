@@ -20,7 +20,7 @@ import jakarta.servlet.http.HttpSession;
 import com.nvminh162.paulshop.domain.User;
 import com.nvminh162.paulshop.service.UserService;
 
-public class CustomSuccessHandler implements AuthenticationSuccessHandler {
+public class CustomAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 
     @Autowired
     private UserService userService;

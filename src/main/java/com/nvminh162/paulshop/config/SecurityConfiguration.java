@@ -79,21 +79,16 @@ public class SecurityConfiguration {
         // v6. lamda
         http
                 .authorizeHttpRequests(authorize -> authorize
-
-                        .dispatcherTypeMatchers(DispatcherType.FORWARD, DispatcherType.INCLUDE)
-
-                        .permitAll()
-
+                        // fix redirected you too many times - unlock prevent forward default of spring security
+                        .dispatcherTypeMatchers(DispatcherType.FORWARD, DispatcherType.INCLUDE).permitAll()
+                        // Với URL /** thì không cần login
                         .requestMatchers(
                                 "/", "/login", "/product/**", "/register",
                                 "/products/**", "/client/**", "/css/**",
                                 "/js/**", "/images/**"
-                        )
-
-                        .permitAll()
-
+                        ).permitAll()
+                        //Chỉ có người có quyền hạn là admin thì mới có quyền truy cập
                         .requestMatchers("/admin/**").hasRole("ADMIN")
-
                         .anyRequest().authenticated()
                 )
                 .sessionManagement((sessionManagement) -> sessionManagement
@@ -109,12 +104,10 @@ public class SecurityConfiguration {
                 .logout(logout -> logout.deleteCookies("JSESSIONID").invalidateHttpSession(true))
                 .rememberMe(r -> r.rememberMeServices(rememberMeServices()))
                 .formLogin(formLogin -> formLogin
+                        // Không cần cấu hình controller postMapping vì spring đã làm sẵn
                         .loginPage("/login")
-
                         .failureUrl("/login?error")
-
                         .successHandler(authenticationSuccessHandler())
-
                         .permitAll()
                 )
                 .exceptionHandling(ex -> ex.accessDeniedPage("/access-deny"));
@@ -168,7 +161,7 @@ public class SecurityConfiguration {
      * Output: `Authentication Object` để return dữ liệu người dùng cho Filter (step 1)
      */
     @Bean
-    public DaoAuthenticationProvider authProvider(
+    public DaoAuthenticationProvider authProvider( //fix loop app if incorrect input
             PasswordEncoder passwordEncoder,
             UserDetailsService userDetailsService) {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();

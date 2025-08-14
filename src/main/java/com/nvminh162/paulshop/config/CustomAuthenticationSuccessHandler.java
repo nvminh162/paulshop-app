@@ -25,8 +25,9 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
     @Autowired
     private UserService userService;
 
-    protected String determineTargetUrl(final Authentication authentication) {
+    private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 
+    protected String determineTargetUrl(final Authentication authentication) {
         Map<String, String> roleTargetUrlMap = new HashMap<>();
         roleTargetUrlMap.put("ROLE_USER", "/");
         roleTargetUrlMap.put("ROLE_ADMIN", "/admin");
@@ -38,7 +39,6 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
                 return roleTargetUrlMap.get(authorityName);
             }
         }
-
         throw new IllegalStateException();
     }
 
@@ -60,12 +60,8 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
             session.setAttribute("email", user.getEmail());
             int sum = user.getCart() == null ? 0 : user.getCart().getSum();
             session.setAttribute("sum", sum);
-
         }
-
     }
-
-    private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
